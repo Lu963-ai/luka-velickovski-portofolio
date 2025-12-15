@@ -166,3 +166,45 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Syne', sans-serif; }
   border-radius: 999px;
   transition: width 1s ease;
 }
+/* Side dots – active label safe spacing */
+
+
+
+#sideDots {
+  max-width: 160px;
+  z-index: 9999;
+}
+
+.dot-btn {
+  position: relative;
+  height: 20px;
+}
+
+.dot-label {
+  margin-left: 8px;          /* bilo 12px */
+  padding: 4px 8px;          /* bilo 6px 10px */
+  font-size: 11px;           /* malo sitnije */
+  border-radius: 999px;
+  background: hsl(220 18% 12% / 0.9);
+  border: 1px solid hsl(220 15% 20%);
+  color: hsl(var(--muted-foreground));
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(-4px); /* bilo -6px */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.dot-btn:hover .dot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* aktivna sekcija */
+.dot-btn .dot-active ~ .dot-label {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary) / 0.4);
+  opacity: 1;
+  transform: translateX(0);
+}

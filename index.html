@@ -97,32 +97,45 @@
   </div>
 
   <!-- Side Dots Nav (desktop) -->
-  <nav id="sideDots" class="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-4">
-    <button class="dot-btn group flex items-center gap-3" data-target="intro" aria-label="Početna">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">Početna</span>
-    </button>
-    <button class="dot-btn group flex items-center gap-3" data-target="about" aria-label="O Meni">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">O Meni</span>
-    </button>
-    <button class="dot-btn group flex items-center gap-3" data-target="skills" aria-label="Veštine">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">Veštine</span>
-    </button>
-    <button class="dot-btn group flex items-center gap-3" data-target="projects" aria-label="Projekti">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">Projekti</span>
-    </button>
-    <button class="dot-btn group flex items-center gap-3" data-target="workflow" aria-label="Workflow">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">Workflow</span>
-    </button>
-    <button class="dot-btn group flex items-center gap-3" data-target="contact" aria-label="Kontakt">
-      <span class="dot w-2 h-2 rounded-full transition-all bg-muted-foreground/40 group-hover:bg-primary/60"></span>
-      <span class="dot-label text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">Kontakt</span>
-    </button>
-  </nav>
+  <nav
+  id="sideDots"
+  class="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-4 px-3 py-4 rounded-2xl bg-background/70"
+>
+
+
+
+
+  <button class="dot-btn group flex items-center" data-target="intro" aria-label="Početna">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">Početna</span>
+  </button>
+
+  <button class="dot-btn group flex items-center" data-target="about" aria-label="O Meni">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">O Meni</span>
+  </button>
+
+  <button class="dot-btn group flex items-center" data-target="skills" aria-label="Veštine">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">Veštine</span>
+  </button>
+
+  <button class="dot-btn group flex items-center" data-target="projects" aria-label="Projekti">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">Projekti</span>
+  </button>
+
+  <button class="dot-btn group flex items-center" data-target="workflow" aria-label="Workflow">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">Workflow</span>
+  </button>
+
+  <button class="dot-btn group flex items-center" data-target="contact" aria-label="Kontakt">
+    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
+    <span class="dot-label">Kontakt</span>
+  </button>
+</nav>
+
 
   <main class="relative">
     <!-- HERO -->
