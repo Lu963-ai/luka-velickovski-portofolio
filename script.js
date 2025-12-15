@@ -182,5 +182,14 @@
   }
 })();
 
+const navToggle = document.getElementById("navToggle");
+const navOverlay = document.getElementById("navOverlay");
+const menuIcon = document.getElementById("menuIcon");
+
+navToggle.addEventListener("click", () => {
+  navOverlay.classList.toggle("hidden");
+  menuIcon.classList.toggle("rotate-90");
+});
+
 
 
