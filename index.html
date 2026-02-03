@@ -1,712 +1,1303 @@
 <!DOCTYPE html>
 <html lang="sr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Frontend / Web Developer</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Portfolio - Frontend / Web Developer</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ["Syne", "sans-serif"],
-            body: ["Outfit", "sans-serif"],
-          },
-        },
-      },
-    };
-  </script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						fontFamily: {
+							display: ["Syne", "sans-serif"],
+							body: ["Outfit", "sans-serif"],
+						},
+					},
+				},
+			};
+		</script>
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <!-- Loading Screen -->
-  <div id="loadingScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[hsl(var(--background))]">
-    <div class="relative mb-8">
-      <svg width="80" height="80" viewBox="0 0 100 100" class="text-primary">
-        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" class="loader-circle" />
-        <path d="M35 35 L50 65 L65 35" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="loader-path" />
-      </svg>
-      <div class="absolute inset-0 blur-2xl bg-primary/30 animate-glow-pulse"></div>
-    </div>
-    <p class="text-muted-foreground font-body text-sm tracking-widest uppercase">Initializing Experience...</p>
-    <div class="mt-6 w-48 h-0.5 bg-muted rounded-full overflow-hidden">
-      <div class="h-full bg-primary loader-bar"></div>
-    </div>
-  </div>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<!-- Loading Screen -->
+		<div
+			id="loadingScreen"
+			class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[hsl(var(--background))]"
+		>
+			<div class="relative mb-8">
+				<svg width="80" height="80" viewBox="0 0 100 100" class="text-primary">
+					<circle
+						cx="50"
+						cy="50"
+						r="45"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						class="loader-circle"
+					/>
+					<path
+						d="M35 35 L50 65 L65 35"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="3"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="loader-path"
+					/>
+				</svg>
+				<div
+					class="absolute inset-0 blur-2xl bg-primary/30 animate-glow-pulse"
+				></div>
+			</div>
+			<p
+				class="text-muted-foreground font-body text-sm tracking-widest uppercase"
+			>
+				Initializing Experience...
+			</p>
+			<div class="mt-6 w-48 h-0.5 bg-muted rounded-full overflow-hidden">
+				<div class="h-full bg-primary loader-bar"></div>
+			</div>
+		</div>
 
-  <!-- Radial / Overlay Nav -->
-  <button
-  id="navToggle"
-  class="fixed top-6 right-6 z-50 w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-secondary/80 transition-colors"
-  aria-label="Toggle navigation"
->
-  <span class="sr-only">Menu</span>
+		<!-- Radial / Overlay Nav -->
+		<button
+			id="navToggle"
+			class="fixed top-6 right-6 z-50 w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-secondary/80 transition-colors"
+			aria-label="Toggle navigation"
+		>
+			<span class="sr-only">Menu</span>
 
-  <!-- SVG burger icon -->
-  <svg
-    id="menuIcon"
-    xmlns="http://www.w3.org/2000/svg"
-    class="w-6 h-6 text-foreground transition-transform duration-300"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    stroke-width="2"
-  >
-    <path stroke-linecap="round" stroke-linejoin="round"
-      d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-</button>
+			<!-- SVG burger icon -->
+			<svg
+				id="menuIcon"
+				xmlns="http://www.w3.org/2000/svg"
+				class="w-6 h-6 text-foreground transition-transform duration-300"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="2"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M4 6h16M4 12h16M4 18h16"
+				/>
+			</svg>
+		</button>
 
+		<div
+			id="navOverlay"
+			class="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl hidden items-center justify-center"
+		>
+			<div class="text-center">
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="intro"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">01</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>Početna</span
+					>
+				</button>
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="about"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">02</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>O Meni</span
+					>
+				</button>
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="skills"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">03</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>Veštine</span
+					>
+				</button>
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="projects"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">04</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>Projekti</span
+					>
+				</button>
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="workflow"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">05</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>Workflow</span
+					>
+				</button>
+				<button
+					class="nav-item block w-full py-4 text-left md:text-center group"
+					data-target="contact"
+				>
+					<span class="text-sm font-body text-muted-foreground mr-4">06</span>
+					<span
+						class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all"
+						>Kontakt</span
+					>
+				</button>
+			</div>
+		</div>
 
+		<!-- Side Dots Nav (desktop) -->
+		<nav
+			id="sideDots"
+			class="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-4 px-3 py-4 rounded-2xl bg-background/70"
+		>
+			<button
+				class="dot-btn group flex items-center"
+				data-target="intro"
+				aria-label="Početna"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">Početna</span>
+			</button>
 
+			<button
+				class="dot-btn group flex items-center"
+				data-target="about"
+				aria-label="O Meni"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">O Meni</span>
+			</button>
 
-  <div id="navOverlay" class="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl hidden items-center justify-center">
-    <div class="text-center">
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="intro">
-        <span class="text-sm font-body text-muted-foreground mr-4">01</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">Početna</span>
-      </button>
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="about">
-        <span class="text-sm font-body text-muted-foreground mr-4">02</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">O Meni</span>
-      </button>
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="skills">
-        <span class="text-sm font-body text-muted-foreground mr-4">03</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">Veštine</span>
-      </button>
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="projects">
-        <span class="text-sm font-body text-muted-foreground mr-4">04</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">Projekti</span>
-      </button>
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="workflow">
-        <span class="text-sm font-body text-muted-foreground mr-4">05</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">Workflow</span>
-      </button>
-      <button class="nav-item block w-full py-4 text-left md:text-center group" data-target="contact">
-        <span class="text-sm font-body text-muted-foreground mr-4">06</span>
-        <span class="text-3xl md:text-5xl font-display font-bold group-hover:gradient-text transition-all">Kontakt</span>
-      </button>
-    </div>
-  </div>
+			<button
+				class="dot-btn group flex items-center"
+				data-target="skills"
+				aria-label="Veštine"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">Veštine</span>
+			</button>
 
-  <!-- Side Dots Nav (desktop) -->
-  <nav
-  id="sideDots"
-  class="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-4 px-3 py-4 rounded-2xl bg-background/70"
->
+			<button
+				class="dot-btn group flex items-center"
+				data-target="projects"
+				aria-label="Projekti"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">Projekti</span>
+			</button>
 
+			<button
+				class="dot-btn group flex items-center"
+				data-target="workflow"
+				aria-label="Workflow"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">Workflow</span>
+			</button>
 
+			<button
+				class="dot-btn group flex items-center"
+				data-target="contact"
+				aria-label="Kontakt"
+			>
+				<span
+					class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"
+				></span>
+				<span class="dot-label">Kontakt</span>
+			</button>
+		</nav>
 
+		<main class="relative">
+			<!-- HERO -->
+			<section
+				id="intro"
+				class="min-h-screen relative overflow-hidden flex items-center"
+			>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(174_100%_50%_/_0.08),transparent_50%)]"
+				></div>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(280_100%_65%_/_0.05),transparent_50%)]"
+				></div>
+				<div
+					class="absolute inset-0 bg-[linear-gradient(hsl(220_15%_20%_/_0.1)_1px,transparent_1px),linear-gradient(90deg,hsl(220_15%_20%_/_0.1)_1px,transparent_1px)] bg-[size:60px_60px]"
+				></div>
 
-  <button class="dot-btn group flex items-center" data-target="intro" aria-label="Početna">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">Početna</span>
-  </button>
+				<div class="container mx-auto px-6 py-20">
+					<div class="flex items-center gap-3 mb-8">
+						<span
+							class="px-4 py-2 text-sm font-body bg-primary/10 text-primary rounded-full border border-primary/20"
+							>Frontend / Web Developer</span
+						>
+					</div>
 
-  <button class="dot-btn group flex items-center" data-target="about" aria-label="O Meni">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">O Meni</span>
-  </button>
+					<h1
+						class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-tight mb-8"
+					>
+						Razvijam <span class="gradient-text">moderne</span><br />
+						web <span class="gradient-accent-text">sajtove</span>
+					</h1>
 
-  <button class="dot-btn group flex items-center" data-target="skills" aria-label="Veštine">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">Veštine</span>
-  </button>
+					<p
+						class="text-xl md:text-2xl text-muted-foreground font-body font-light max-w-2xl mb-8"
+					>
+						Radim responzivne web sajtove sa fokusom na čistu strukturu, dobar
+						UX i stabilan frontend kod. GitHub workflow, realni projekti,
+						kontinuirano unapređenje.
+					</p>
 
-  <button class="dot-btn group flex items-center" data-target="projects" aria-label="Projekti">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">Projekti</span>
-  </button>
+					<div class="flex flex-wrap gap-4 mb-16">
+						<a
+							href="english.html"
+							class="relative z-50 group px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-full flex items-center gap-3 hover:glow-sm transition-all"
+						>
+							English
+						</a>
 
-  <button class="dot-btn group flex items-center" data-target="workflow" aria-label="Workflow">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">Workflow</span>
-  </button>
+						<a
+							href="#contact"
+							class="px-8 py-4 glass text-foreground font-display font-semibold rounded-full flex items-center gap-3 hover:bg-secondary/80 transition-all"
+						>
+							Kontaktirajte me
+						</a>
+					</div>
 
-  <button class="dot-btn group flex items-center" data-target="contact" aria-label="Kontakt">
-    <span class="dot w-2 h-2 rounded-full bg-muted-foreground/40 transition-all group-hover:bg-primary"></span>
-    <span class="dot-label">Kontakt</span>
-  </button>
-</nav>
+					<div class="flex gap-4">
+						<a
+							href="https://github.com/Lu963-ai"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all"
+							aria-label="GitHub"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								width="20"
+								height="20"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 18 4.77 5.07 5.07 0 0 0 17.91 1S16.73.65 14 2.48a13.38 13.38 0 0 0-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+								></path>
+							</svg>
+						</a>
 
+						<a
+							href="mailto:velickovskiluka0@gmail.com"
+							class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all"
+							aria-label="Email"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								width="20"
+								height="20"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M4 4h16v16H4z"></path>
+								<path d="m22 6-10 7L2 6"></path>
+							</svg>
+						</a>
+					</div>
 
-  <main class="relative">
-    <!-- HERO -->
-    <section id="intro" class="min-h-screen relative overflow-hidden flex items-center">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(174_100%_50%_/_0.08),transparent_50%)]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(280_100%_65%_/_0.05),transparent_50%)]"></div>
-      <div class="absolute inset-0 bg-[linear-gradient(hsl(220_15%_20%_/_0.1)_1px,transparent_1px),linear-gradient(90deg,hsl(220_15%_20%_/_0.1)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+					<div
+						class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator"
+					>
+						<div
+							class="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
+						>
+							<div class="w-1 h-2 bg-primary rounded-full"></div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-      <div class="container mx-auto px-6 py-20">
-        <div class="flex items-center gap-3 mb-8">
-          <span class="px-4 py-2 text-sm font-body bg-primary/10 text-primary rounded-full border border-primary/20">Frontend / Web Developer</span>
-        </div>
+			<!-- ABOUT -->
+			<section id="about" class="min-h-screen py-32 relative overflow-hidden">
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,hsl(280_100%_65%_/_0.05),transparent_50%)]"
+				></div>
+				<div class="container mx-auto px-6 relative">
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
+							O <span class="gradient-text">Meni</span>
+						</h2>
+						<p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">
+							Frontend developer sa praktičnim iskustvom
+						</p>
+					</div>
 
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-tight mb-8">
-          Razvijam <span class="gradient-text">moderne</span><br />
-          web <span class="gradient-accent-text">sajtove</span>
-        </h1>
+					<div class="grid lg:grid-cols-2 gap-12 items-center">
+						<div>
+							<h3 class="text-3xl md:text-4xl font-display font-bold mb-6">
+								Frontend /
+								<span class="gradient-accent-text">Web Developer</span>
+							</h3>
+							<div
+								class="space-y-6 text-muted-foreground font-body leading-relaxed"
+							>
+								<p>
+									Frontend / Web developer sa praktičnim iskustvom u izradi i
+									održavanju web sajtova. Radim sa HTML, CSS i JavaScript, uz
+									redovno korišćenje GitHub-a za verzionisanje koda i deploy.
+								</p>
+								<p>
+									Naviknut sam na rad po rokovima i fokusiran sam na čitljiv,
+									održiv i responzivan kod.
+								</p>
+							</div>
 
-        <p class="text-xl md:text-2xl text-muted-foreground font-body font-light max-w-2xl mb-8">
-          Radim responzivne web sajtove sa fokusom na čistu strukturu, dobar UX i stabilan frontend kod. GitHub workflow, realni projekti, kontinuirano unapređenje.
-        </p>
+							<div class="mt-10 space-y-4">
+								<h4 class="font-display font-semibold text-foreground mb-4">
+									Imam iskustvo u:
+								</h4>
 
-        <div class="flex flex-wrap gap-4 mb-16">
-          <a href="english.html" class="relative z-50 group px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-full flex items-center gap-3 hover:glow-sm transition-all">
-            English
-          </a>
-          
-          <a href="#contact" class="px-8 py-4 glass text-foreground font-display font-semibold rounded-full flex items-center gap-3 hover:bg-secondary/80 transition-all">
-            Kontaktirajte me
-          </a>
-        </div>
+								<div class="flex items-center gap-4 glass rounded-xl p-4">
+									<div
+										class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
+									>
+										<span class="text-primary">&lt;/&gt;</span>
+									</div>
+									<span class="font-body">Izrada kompletnih web sajtova</span>
+								</div>
+								<div class="flex items-center gap-4 glass rounded-xl p-4">
+									<div
+										class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
+									>
+										<span class="text-primary">⟲</span>
+									</div>
+									<span class="font-body"
+										>Modernizacija postojećih dizajna</span
+									>
+								</div>
+								<div class="flex items-center gap-4 glass rounded-xl p-4">
+									<div
+										class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
+									>
+										<span class="text-primary">🐙</span>
+									</div>
+									<span class="font-body"
+										>Timski rad i podela zadataka kroz GitHub</span
+									>
+								</div>
+								<div class="flex items-center gap-4 glass rounded-xl p-4">
+									<div
+										class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
+									>
+										<span class="text-primary">⏱</span>
+									</div>
+									<span class="font-body"
+										>Rad na live projektima po rokovima</span
+									>
+								</div>
+							</div>
+						</div>
 
-        <div class="flex gap-4">
-          <a href="https://github.com/Lu963-ai" target="_blank" rel="noopener noreferrer" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 18 4.77 5.07 5.07 0 0 0 17.91 1S16.73.65 14 2.48a13.38 13.38 0 0 0-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-         
-          <a href="mailto:velickovskiluka0@gmail.com" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all" aria-label="Email">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16v16H4z"></path>
-              <path d="m22 6-10 7L2 6"></path>
-            </svg>
-          </a>
-        </div>
+						<div class="relative">
+							<div class="relative aspect-square max-w-md mx-auto">
+								<div
+									class="absolute inset-0 rounded-full glass border border-primary/20"
+								>
+									<div
+										class="absolute inset-4 rounded-full glass border border-primary/10"
+									>
+										<div
+											class="absolute inset-4 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center"
+										>
+											<div class="text-center">
+												<div
+													class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4"
+												>
+													<span class="text-primary text-2xl">&lt;/&gt;</span>
+												</div>
+												<span
+													class="font-display text-2xl font-bold gradient-text"
+													>&lt;/&gt;</span
+												>
+											</div>
+										</div>
+									</div>
+								</div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
-          <div class="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-            <div class="w-1 h-2 bg-primary rounded-full"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+								<div
+									class="absolute -top-4 right-10 px-4 py-2 glass rounded-full text-sm font-body float-y"
+								>
+									HTML5
+								</div>
+								<div
+									class="absolute -bottom-4 left-10 px-4 py-2 glass rounded-full text-sm font-body float-y-rev"
+								>
+									CSS3
+								</div>
+								<div
+									class="absolute top-1/2 -left-8 px-4 py-2 glass rounded-full text-sm font-body float-x"
+								>
+									JavaScript
+								</div>
+								<div
+									class="absolute top-1/4 -right-4 px-4 py-2 glass rounded-full text-sm font-body float-x-rev"
+								>
+									GitHub
+								</div>
+								<div
+									class="absolute top-2 right-4 px-4 py-4 glass rounded-full text-sm font-body float-x-rev"
+								>
+									Bootstrap
+								</div>
 
-    <!-- ABOUT -->
-    <section id="about" class="min-h-screen py-32 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,hsl(280_100%_65%_/_0.05),transparent_50%)]"></div>
-      <div class="container mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-display font-bold mb-4">O <span class="gradient-text">Meni</span></h2>
-          <p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">Frontend developer sa praktičnim iskustvom</p>
-        </div>
+								<div
+									class="absolute top-1/2 -translate-y-1/2 right-[-2.5rem] px-4 py-2 glass rounded-full text-sm font-body float-x-rev"
+								>
+									jQuery
+								</div>
 
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-3xl md:text-4xl font-display font-bold mb-6">Frontend / <span class="gradient-accent-text">Web Developer</span></h3>
-            <div class="space-y-6 text-muted-foreground font-body leading-relaxed">
-              <p>Frontend / Web developer sa praktičnim iskustvom u izradi i održavanju web sajtova. Radim sa HTML, CSS i JavaScript, uz redovno korišćenje GitHub-a za verzionisanje koda i deploy.</p>
-              <p>Naviknut sam na rad po rokovima i fokusiran sam na čitljiv, održiv i responzivan kod.</p>
-            </div>
+								<div
+									class="absolute bottom-4 right-4 px-4 py-2 glass rounded-full text-sm font-body float-x-rev"
+								>
+									SCSS
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-            <div class="mt-10 space-y-4">
-              <h4 class="font-display font-semibold text-foreground mb-4">Imam iskustvo u:</h4>
+			<!-- SKILLS -->
+			<section id="skills" class="min-h-screen py-32 relative overflow-hidden">
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(174_100%_50%_/_0.05),transparent_50%)]"
+				></div>
 
-              <div class="flex items-center gap-4 glass rounded-xl p-4">
-                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <span class="text-primary">&lt;/&gt;</span>
-                </div>
-                <span class="font-body">Izrada kompletnih web sajtova</span>
-              </div>
-              <div class="flex items-center gap-4 glass rounded-xl p-4">
-                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <span class="text-primary">⟲</span>
-                </div>
-                <span class="font-body">Modernizacija postojećih dizajna</span>
-              </div>
-              <div class="flex items-center gap-4 glass rounded-xl p-4">
-                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <span class="text-primary">🐙</span>
-                </div>
-                <span class="font-body">Timski rad i podela zadataka kroz GitHub</span>
-              </div>
-              <div class="flex items-center gap-4 glass rounded-xl p-4">
-                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <span class="text-primary">⏱</span>
-                </div>
-                <span class="font-body">Rad na live projektima po rokovima</span>
-              </div>
-            </div>
-          </div>
+				<div class="container mx-auto px-6 relative">
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
+							Moje <span class="gradient-text">Veštine</span>
+						</h2>
+						<p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">
+							Tehnologije i alati koje koristim
+						</p>
+					</div>
 
-          <div class="relative">
-            <div class="relative aspect-square max-w-md mx-auto">
-              <div class="absolute inset-0 rounded-full glass border border-primary/20">
-                <div class="absolute inset-4 rounded-full glass border border-primary/10">
-                  <div class="absolute inset-4 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div class="text-center">
-                      <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <span class="text-primary text-2xl">&lt;/&gt;</span>
-                      </div>
-                      <span class="font-display text-2xl font-bold gradient-text">&lt;/&gt;</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+					<div class="grid md:grid-cols-3 gap-8">
+						<!-- Card 1 -->
+						<div class="glass rounded-2xl p-8">
+							<div class="flex items-center gap-4 mb-8">
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"
+								>
+									<span class="text-primary text-xl">&lt;/&gt;</span>
+								</div>
+								<h3 class="font-display font-semibold text-xl">
+									Frontend Development
+								</h3>
+							</div>
 
-              <div class="absolute -top-4 right-10 px-4 py-2 glass rounded-full text-sm font-body float-y">HTML5</div>
-              <div class="absolute -bottom-4 left-10 px-4 py-2 glass rounded-full text-sm font-body float-y-rev">CSS3</div>
-              <div class="absolute top-1/2 -left-8 px-4 py-2 glass rounded-full text-sm font-body float-x">JavaScript</div>
-              <div class="absolute top-1/4 -right-4 px-4 py-2 glass rounded-full text-sm font-body float-x-rev">GitHub</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+							<div class="space-y-6">
+								<div class="skill" data-level="90">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm">HTML5</span>
+										<span class="font-body text-sm text-muted-foreground"
+											>90%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-    <!-- SKILLS -->
-    <section id="skills" class="min-h-screen py-32 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(174_100%_50%_/_0.05),transparent_50%)]"></div>
-    
-      <div class="container mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
-            Moje <span class="gradient-text">Veštine</span>
-          </h2>
-          <p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">Tehnologije i alati koje koristim</p>
-        </div>
-    
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div class="glass rounded-2xl p-8">
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                <span class="text-primary text-xl">&lt;/&gt;</span>
-              </div>
-              <h3 class="font-display font-semibold text-xl">Frontend Development</h3>
-            </div>
-    
-            <div class="space-y-6">
-              <div class="skill" data-level="90">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">HTML5</span>
-                  <span class="font-body text-sm text-muted-foreground">90%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="85">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">CSS3 (Flexbox, Responsive)</span>
-                  <span class="font-body text-sm text-muted-foreground">85%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="75">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">JavaScript (DOM manipulation)</span>
-                  <span class="font-body text-sm text-muted-foreground">75%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Card 2 -->
-          <div class="glass rounded-2xl p-8">
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                <span class="text-primary text-xl">🐙</span>
-              </div>
-              <h3 class="font-display font-semibold text-xl">Workflow & Tools</h3>
-            </div>
-    
-            <div class="space-y-6">
-              <div class="skill" data-level="85">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">Git & GitHub</span>
-                  <span class="font-body text-sm text-muted-foreground">85%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="90">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">VS Code</span>
-                  <span class="font-body text-sm text-muted-foreground">90%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="80">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">Deploy putem Git workflow-a</span>
-                  <span class="font-body text-sm text-muted-foreground">80%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <!-- Card 3 -->
-          <div class="glass rounded-2xl p-8">
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                <span class="text-primary text-xl">📱</span>
-              </div>
-              <h3 class="font-display font-semibold text-xl">Other Skills</h3>
-            </div>
-    
-            <div class="space-y-6">
-              <div class="skill" data-level="85">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">Responsive and mobile-first design</span>
-                  <span class="font-body text-sm text-muted-foreground">85%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="70">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">UI/UX osnovni principi</span>
-                  <span class="font-body text-sm text-muted-foreground">70%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-    
-              <div class="skill" data-level="80">
-                <div class="flex justify-between mb-2">
-                  <span class="font-body text-sm">Rad sa template osnovom</span>
-                  <span class="font-body text-sm text-muted-foreground">80%</span>
-                </div>
-                <div class="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div class="skill-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="mt-16 flex flex-wrap justify-center gap-6">
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">🌐</span><span class="font-body text-sm">HTML5</span></div>
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">🎨</span><span class="font-body text-sm">CSS3</span></div>
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">⚡</span><span class="font-body text-sm">JavaScript</span></div>
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">📦</span><span class="font-body text-sm">Git</span></div>
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">🐙</span><span class="font-body text-sm">GitHub</span></div>
-          <div class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"><span class="text-xl">💻</span><span class="font-body text-sm">VS Code</span></div>
-        </div>
-      </div>
-    </section>
-    
+								<div class="skill" data-level="85">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>CSS3 (Flexbox, Responsive)</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>85%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="min-h-screen py-32 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(280_100%_65%_/_0.05),transparent_50%)]"></div>
-      <div class="container mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-display font-bold mb-4">Moji <span class="gradient-text">Projekti</span></h2>
-          <p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">Pogledajte neke od mojih radova</p>
-        </div>
+								<div class="skill" data-level="75">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>JavaScript (DOM manipulation)</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>75%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-          <article class="group glass rounded-2xl overflow-hidden">
-            <div class="relative aspect-video overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" alt="Personal Portfolio Website" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-primary/20 text-primary border border-primary/30">🌍 Solo</span>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="font-display font-semibold text-xl mb-3">Business / Presentation Website</h3>
-              <p class="text-muted-foreground font-body text-sm mb-4 leading-relaxed">Web sajt namenjen predstavljanju usluga, sa jasnom strukturom i fokusom na korisničko iskustvo. </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">HTML</span>
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">CSS</span>
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">JavaScript</span>
-              </div>
-              <p class="text-xs text-muted-foreground font-body mb-4"><span class="text-primary">Fokus:</span> Layout, responsive, čista struktura koda</p>
-              <div class="flex gap-3">
-                <a href="https://github.com/Lu963-ai" class="flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm font-body hover:bg-secondary/80 transition-colors">GitHub</a>
-                <a href="https://pasirkezavoce.com" class="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-body hover:glow-sm transition-all">Live</a>
-              </div>
-            </div>
-          </article>
+						<!-- Card 2 -->
+						<div class="glass rounded-2xl p-8">
+							<div class="flex items-center gap-4 mb-8">
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"
+								>
+									<span class="text-primary text-xl">🐙</span>
+								</div>
+								<h3 class="font-display font-semibold text-xl">
+									Workflow & Tools
+								</h3>
+							</div>
 
-          <article class="group glass rounded-2xl overflow-hidden">
-            <div class="relative aspect-video overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Business / Presentation Website" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-primary/20 text-primary border border-primary/30">🌍 Solo</span>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="font-display font-semibold text-xl mb-3">Personal Portfolio Website</h3>
-              <p class="text-muted-foreground font-body text-sm mb-4 leading-relaxed">Frontend portfolio sajt razvijen od nule, sa modernim layoutom i responzivnim dizajnom.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">HTML</span>
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">CSS</span>
-              </div>
-              <p class="text-xs text-muted-foreground font-body mb-4"><span class="text-primary">Fokus:</span> UX, sekcije, optimizovan prikaz sadržaja</p>
-              <div class="flex gap-3">
-                <a href="https://github.com/Lu963-ai" class="flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm font-body hover:bg-secondary/80 transition-colors">GitHub</a>
-              </div>
-            </div>
-          </article>
+							<div class="space-y-6">
+								<div class="skill" data-level="85">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm">Git & GitHub</span>
+										<span class="font-body text-sm text-muted-foreground"
+											>85%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-          <article class="group glass rounded-2xl overflow-hidden">
-            <div class="relative aspect-video overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Team Project (Frontend Collaboration)" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-accent/20 text-accent border border-accent/30">👥 Tim</span>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="font-display font-semibold text-xl mb-3">Team Project (Frontend Collaboration)</h3>
-              <p class="text-muted-foreground font-body text-sm mb-4 leading-relaxed">Timski projekat razvijan u saradnji sa drugim developerom. Radili smo podelu zadataka i koordinaciju putem GitHub-a.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">HTML</span>
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">CSS</span>
-                <span class="px-3 py-1 text-xs font-body bg-secondary rounded-full">GitHub</span>
-              </div>
-              <p class="text-xs text-muted-foreground font-body mb-4"><span class="text-primary">Fokus:</span> Izrada frontend sekcija, layout, stilovi, GitHub workflow</p>
-              <div class="flex gap-3">
-                <span class="text-xs text-muted-foreground font-body italic">Privatni / vežba projekat</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+								<div class="skill" data-level="90">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm">VS Code</span>
+										<span class="font-body text-sm text-muted-foreground"
+											>90%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-    <!-- WORKFLOW -->
-    <section id="workflow" class="py-32 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(174_100%_50%_/_0.05),transparent_50%)]"></div>
-      <div class="container mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-display font-bold mb-4">Kako <span class="gradient-text">Radim</span></h2>
-          <p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">Moj pristup radu i workflow</p>
-        </div>
+								<div class="skill" data-level="80">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>Deploy putem Git workflow-a</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>80%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-        <div class="max-w-3xl mx-auto">
-          <div class="relative">
-            <div class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary text-xl">📦</span></div>
-              <p class="font-body text-lg">Radim sa GitHub verzionisanjem</p>
-            </div>
-            <div class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"></div>
-          </div>
+						<!-- Card 3 -->
+						<div class="glass rounded-2xl p-8">
+							<div class="flex items-center gap-4 mb-8">
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center"
+								>
+									<span class="text-primary text-xl">📱</span>
+								</div>
+								<h3 class="font-display font-semibold text-xl">Other Skills</h3>
+							</div>
 
-          <div class="relative">
-            <div class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary text-xl">✅</span></div>
-              <p class="font-body text-lg">Svaka izmena se radi kroz commit i push</p>
-            </div>
-            <div class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"></div>
-          </div>
+							<div class="space-y-6">
+								<div class="skill" data-level="85">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>Responsive and mobile-first design</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>85%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-          <div class="relative">
-            <div class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary text-xl">⏱</span></div>
-              <p class="font-body text-lg">Naviknut na rad sa live projektima</p>
-            </div>
-            <div class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"></div>
-          </div>
+								<div class="skill" data-level="70">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>UI/UX osnovni principi</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>70%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
 
-          <div class="relative">
-            <div class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary text-xl">⚡</span></div>
-              <p class="font-body text-lg">Pratim rokove i jasno definisane zadatke</p>
-            </div>
-            <div class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"></div>
-          </div>
+								<div class="skill" data-level="80">
+									<div class="flex justify-between mb-2">
+										<span class="font-body text-sm"
+											>Rad sa template osnovom</span
+										>
+										<span class="font-body text-sm text-muted-foreground"
+											>80%</span
+										>
+									</div>
+									<div class="h-2 bg-secondary rounded-full overflow-hidden">
+										<div class="skill-bar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-          <div class="relative">
-            <div class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary text-xl">✨</span></div>
-              <p class="font-body text-lg">AI koristim kao pomoćni alat za razumevanje i optimizaciju koda</p>
-            </div>
-          </div>
-        </div>
+					<div class="mt-16 flex flex-wrap justify-center gap-6">
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">🌐</span
+							><span class="font-body text-sm">HTML5</span>
+						</div>
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">🎨</span
+							><span class="font-body text-sm">CSS3</span>
+						</div>
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">⚡</span
+							><span class="font-body text-sm">JavaScript</span>
+						</div>
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">📦</span
+							><span class="font-body text-sm">Git</span>
+						</div>
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">🐙</span
+							><span class="font-body text-sm">GitHub</span>
+						</div>
+						<div
+							class="flex items-center gap-2 px-5 py-3 glass rounded-full hover:border-primary/30 transition-colors"
+						>
+							<span class="text-xl">💻</span
+							><span class="font-body text-sm">VS Code</span>
+						</div>
+					</div>
+				</div>
+			</section>
 
-        <div class="mt-16 glass rounded-2xl p-8 max-w-4xl mx-auto">
-          <h3 class="font-display font-semibold text-xl mb-6 text-center">Git Workflow</h3>
-          <div class="flex flex-wrap justify-center items-center gap-4">
-            <div class="flex items-center gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass">1</div>
-                <span class="font-body text-sm mt-2 text-muted-foreground">Code</span>
-              </div>
-              <div class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"></div>
-            </div>
+			<!-- PROJECTS -->
+			<section
+				id="projects"
+				class="min-h-screen py-32 relative overflow-hidden"
+			>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(280_100%_65%_/_0.05),transparent_50%)]"
+				></div>
+				<div class="container mx-auto px-6 relative">
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
+							Moji <span class="gradient-text">Projekti</span>
+						</h2>
+						<p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">
+							Pogledajte neke od mojih radova
+						</p>
+					</div>
 
-            <div class="flex items-center gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass">2</div>
-                <span class="font-body text-sm mt-2 text-muted-foreground">Commit</span>
-              </div>
-              <div class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"></div>
-            </div>
+					<div class="grid lg:grid-cols-3 gap-8">
+						<article class="group glass rounded-2xl overflow-hidden">
+							<div class="relative aspect-video overflow-hidden">
+								<img
+									src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop"
+									alt="Personal Portfolio Website"
+									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"
+								></div>
+								<div class="absolute top-4 left-4">
+									<span
+										class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-primary/20 text-primary border border-primary/30"
+										>🌍 Solo</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<h3 class="font-display font-semibold text-xl mb-3">
+									Business / Presentation Website
+								</h3>
+								<p
+									class="text-muted-foreground font-body text-sm mb-4 leading-relaxed"
+								>
+									Web sajt namenjen predstavljanju usluga, sa jasnom strukturom
+									i fokusom na korisničko iskustvo.
+								</p>
+								<div class="flex flex-wrap gap-2 mb-4">
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>HTML</span
+									>
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>CSS</span
+									>
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>JavaScript</span
+									>
+								</div>
+								<p class="text-xs text-muted-foreground font-body mb-4">
+									<span class="text-primary">Fokus:</span> Layout, responsive,
+									čista struktura koda
+								</p>
+								<div class="flex gap-3">
+									<a
+										href="https://github.com/Lu963-ai"
+										class="flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm font-body hover:bg-secondary/80 transition-colors"
+										>GitHub</a
+									>
+									<a
+										href="https://pasirkezavoce.com"
+										class="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-body hover:glow-sm transition-all"
+										>Live</a
+									>
+								</div>
+							</div>
+						</article>
 
-            <div class="flex items-center gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass">3</div>
-                <span class="font-body text-sm mt-2 text-muted-foreground">Push</span>
-              </div>
-              <div class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"></div>
-            </div>
+						<article class="group glass rounded-2xl overflow-hidden">
+							<div class="relative aspect-video overflow-hidden">
+								<img
+									src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+									alt="Business / Presentation Website"
+									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"
+								></div>
+								<div class="absolute top-4 left-4">
+									<span
+										class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-primary/20 text-primary border border-primary/30"
+										>🌍 Solo</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<h3 class="font-display font-semibold text-xl mb-3">
+									Personal Portfolio Website
+								</h3>
+								<p
+									class="text-muted-foreground font-body text-sm mb-4 leading-relaxed"
+								>
+									Frontend portfolio sajt razvijen od nule, sa modernim layoutom
+									i responzivnim dizajnom.
+								</p>
+								<div class="flex flex-wrap gap-2 mb-4">
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>HTML</span
+									>
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>CSS</span
+									>
+								</div>
+								<p class="text-xs text-muted-foreground font-body mb-4">
+									<span class="text-primary">Fokus:</span> UX, sekcije,
+									optimizovan prikaz sadržaja
+								</p>
+								<div class="flex gap-3">
+									<a
+										href="https://github.com/Lu963-ai"
+										class="flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm font-body hover:bg-secondary/80 transition-colors"
+										>GitHub</a
+									>
+								</div>
+							</div>
+						</article>
 
-            <div class="flex items-center gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold bg-primary text-primary-foreground">4</div>
-                <span class="font-body text-sm mt-2 text-muted-foreground">Deploy</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+						<article class="group glass rounded-2xl overflow-hidden">
+							<div class="relative aspect-video overflow-hidden">
+								<img
+									src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
+									alt="Team Project (Frontend Collaboration)"
+									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"
+								></div>
+								<div class="absolute top-4 left-4">
+									<span
+										class="px-3 py-1 text-xs font-body rounded-full flex items-center gap-1 bg-accent/20 text-accent border border-accent/30"
+										>👥 Tim</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<h3 class="font-display font-semibold text-xl mb-3">
+									Team Project (Frontend Collaboration)
+								</h3>
+								<p
+									class="text-muted-foreground font-body text-sm mb-4 leading-relaxed"
+								>
+									Timski projekat razvijan u saradnji sa drugim developerom.
+									Radili smo podelu zadataka i koordinaciju putem GitHub-a.
+								</p>
+								<div class="flex flex-wrap gap-2 mb-4">
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>HTML</span
+									>
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>CSS</span
+									>
+									<span
+										class="px-3 py-1 text-xs font-body bg-secondary rounded-full"
+										>GitHub</span
+									>
+								</div>
+								<p class="text-xs text-muted-foreground font-body mb-4">
+									<span class="text-primary">Fokus:</span> Izrada frontend
+									sekcija, layout, stilovi, GitHub workflow
+								</p>
+								<div class="flex gap-3">
+									<span class="text-xs text-muted-foreground font-body italic"
+										>Privatni / vežba projekat</span
+									>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="min-h-screen py-32 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_80%,hsl(174_100%_50%_/_0.05),transparent_50%)]"></div>
-      <div class="container mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-display font-bold mb-4"><span class="gradient-text">Kontakt</span></h2>
-          <p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">Zainteresovani za saradnju ili razgovor?</p>
-        </div>
+			<!-- WORKFLOW -->
+			<section id="workflow" class="py-32 relative overflow-hidden">
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(174_100%_50%_/_0.05),transparent_50%)]"
+				></div>
+				<div class="container mx-auto px-6 relative">
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
+							Kako <span class="gradient-text">Radim</span>
+						</h2>
+						<p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">
+							Moj pristup radu i workflow
+						</p>
+					</div>
 
-        <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div>
-            <form id="contactForm" class="space-y-6">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <input type="text" name="name" placeholder="Vaše ime" class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body" required />
-                </div>
-                <div>
-                  <input type="email" name="email" placeholder="Vaš email" class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body" required />
-                </div>
-              </div>
-              <div>
-                <input type="text" name="subject" placeholder="Predmet" class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body" required />
-              </div>
-              <div>
-                <textarea name="message" rows="5" placeholder="Vaša poruka" class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body resize-none" required></textarea>
-              </div>
-              <button type="submit" class="w-full px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-xl flex items-center justify-center gap-3 hover:glow-sm transition-all">Pošalji poruku</button>
-            </form>
-          </div>
+					<div class="max-w-3xl mx-auto">
+						<div class="relative">
+							<div
+								class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors"
+							>
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary text-xl">📦</span>
+								</div>
+								<p class="font-body text-lg">Radim sa GitHub verzionisanjem</p>
+							</div>
+							<div
+								class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"
+							></div>
+						</div>
 
-          <div class="space-y-6">
-            <a href="mailto:luka.velickovski.analytics@gmail.com" class="glass rounded-2xl p-6 flex items-start gap-5 hover:border-primary/30 transition-colors block">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary">✉️</span></div>
-              <div>
-                <h4 class="font-display font-semibold text-foreground mb-1">Email</h4>
-                <p class="text-muted-foreground font-body"  >velickovskiluka0@gmail.com</p>
-              </div>
-            </a>
+						<div class="relative">
+							<div
+								class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors"
+							>
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary text-xl">✅</span>
+								</div>
+								<p class="font-body text-lg">
+									Svaka izmena se radi kroz commit i push
+								</p>
+							</div>
+							<div
+								class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"
+							></div>
+						</div>
 
-            <a href="https://github.com/Lu963-ai" target="_blank" rel="noopener noreferrer" class="glass rounded-2xl p-6 flex items-start gap-5 hover:border-primary/30 transition-colors block">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="text-primary">🐙</span></div>
-              <div>
-                <h4 class="font-display font-semibold text-foreground mb-1">GitHub</h4>
-                <p class="text-muted-foreground font-body">https://github.com/Lu963-ai</p>
-              </div>
-            </a>
+						<div class="relative">
+							<div
+								class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors"
+							>
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary text-xl">⏱</span>
+								</div>
+								<p class="font-body text-lg">
+									Naviknut na rad sa live projektima
+								</p>
+							</div>
+							<div
+								class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"
+							></div>
+						</div>
 
-           
+						<div class="relative">
+							<div
+								class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors"
+							>
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary text-xl">⚡</span>
+								</div>
+								<p class="font-body text-lg">
+									Pratim rokove i jasno definisane zadatke
+								</p>
+							</div>
+							<div
+								class="absolute left-10 top-full w-0.5 h-4 bg-gradient-to-b from-primary/30 to-transparent"
+							></div>
+						</div>
 
-            <div class="glass rounded-2xl p-8 text-center">
-              <div class="text-4xl mb-4">💬</div>
-              <h4 class="font-display font-semibold text-xl mb-2">Spremni za saradnju?</h4>
-              <p class="text-muted-foreground font-body text-sm">Javite mi se putem email-a ili društvenih mreža. Odgovaram u roku od 24h.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+						<div class="relative">
+							<div
+								class="flex items-center gap-6 glass rounded-2xl p-6 mb-4 hover:border-primary/30 transition-colors"
+							>
+								<div
+									class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary text-xl">✨</span>
+								</div>
+								<p class="font-body text-lg">
+									AI koristim kao pomoćni alat za razumevanje i optimizaciju
+									koda
+								</p>
+							</div>
+						</div>
+					</div>
 
-  <footer class="py-12 border-t border-border">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-          <span class="font-display text-xl font-bold gradient-text">Portfolio</span>
-          <p class="text-muted-foreground font-body text-sm mt-1">Frontend / Web Developer</p>
-        </div>
+					<div class="mt-16 glass rounded-2xl p-8 max-w-4xl mx-auto">
+						<h3 class="font-display font-semibold text-xl mb-6 text-center">
+							Git Workflow
+						</h3>
+						<div class="flex flex-wrap justify-center items-center gap-4">
+							<div class="flex items-center gap-4">
+								<div class="flex flex-col items-center">
+									<div
+										class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass"
+									>
+										1
+									</div>
+									<span class="font-body text-sm mt-2 text-muted-foreground"
+										>Code</span
+									>
+								</div>
+								<div
+									class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"
+								></div>
+							</div>
 
-        <div class="flex gap-4">
-          <a href="https://github.com/Lu963-ai" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 18 4.77 5.07 5.07 0 0 0 17.91 1S16.73.65 14 2.48a13.38 13.38 0 0 0-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-         
-          <a href="mailto:luka.velickovski.analytics@gmail.com" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all" aria-label="Email">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16v16H4z"></path>
-              <path d="m22 6-10 7L2 6"></path>
-            </svg>
-          </a>
-        </div>
+							<div class="flex items-center gap-4">
+								<div class="flex flex-col items-center">
+									<div
+										class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass"
+									>
+										2
+									</div>
+									<span class="font-body text-sm mt-2 text-muted-foreground"
+										>Commit</span
+									>
+								</div>
+								<div
+									class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"
+								></div>
+							</div>
 
-        <p class="text-muted-foreground font-body text-sm">© 2025 All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+							<div class="flex items-center gap-4">
+								<div class="flex flex-col items-center">
+									<div
+										class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold glass"
+									>
+										3
+									</div>
+									<span class="font-body text-sm mt-2 text-muted-foreground"
+										>Push</span
+									>
+								</div>
+								<div
+									class="hidden md:block w-12 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20"
+								></div>
+							</div>
 
-  <div id="toast" class="toast hidden" role="status" aria-live="polite">
-    <div class="toast-title">Poruka poslata!</div>
-    <div class="toast-desc">Javim se u najkraćem mogućem roku.</div>
-  </div>
+							<div class="flex items-center gap-4">
+								<div class="flex flex-col items-center">
+									<div
+										class="w-16 h-16 rounded-full flex items-center justify-center font-display font-bold bg-primary text-primary-foreground"
+									>
+										4
+									</div>
+									<span class="font-body text-sm mt-2 text-muted-foreground"
+										>Deploy</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-  <script src="script.js"></script>
-  
-  
-  
-  <script>
-    function fillSkillBars() {
-      document.querySelectorAll(".skill").forEach((skill) => {
-        const level = skill.getAttribute("data-level") || "0";
-        const bar = skill.querySelector(".skill-bar");
-        if (!bar) return;
-  
-        // reset
-        bar.style.width = "0%";
-  
-        // force reflow (da animacija radi i posle refresh)
-        void bar.offsetWidth;
-  
-        // fill
-        setTimeout(() => {
-          bar.style.width = level + "%";
-        }, 150);
-      });
-    }
-  
-    window.addEventListener("load", fillSkillBars);
-    window.addEventListener("pageshow", fillSkillBars); // refresh/back fix
-  </script>
-  
-  
-  
-</body>
+			<!-- CONTACT -->
+			<section id="contact" class="min-h-screen py-32 relative overflow-hidden">
+				<div
+					class="absolute inset-0 bg-[radial-gradient(circle_at_30%_80%,hsl(174_100%_50%_/_0.05),transparent_50%)]"
+				></div>
+				<div class="container mx-auto px-6 relative">
+					<div class="text-center mb-16">
+						<h2 class="text-4xl md:text-6xl font-display font-bold mb-4">
+							<span class="gradient-text">Kontakt</span>
+						</h2>
+						<p class="text-muted-foreground font-body text-lg max-w-xl mx-auto">
+							Zainteresovani za saradnju ili razgovor?
+						</p>
+					</div>
+
+					<div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+						<div>
+							<form id="contactForm" class="space-y-6">
+								<div class="grid md:grid-cols-2 gap-6">
+									<div>
+										<input
+											type="text"
+											name="name"
+											placeholder="Vaše ime"
+											class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body"
+											required
+										/>
+									</div>
+									<div>
+										<input
+											type="email"
+											name="email"
+											placeholder="Vaš email"
+											class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body"
+											required
+										/>
+									</div>
+								</div>
+								<div>
+									<input
+										type="text"
+										name="subject"
+										placeholder="Predmet"
+										class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body"
+										required
+									/>
+								</div>
+								<div>
+									<textarea
+										name="message"
+										rows="5"
+										placeholder="Vaša poruka"
+										class="w-full px-6 py-4 glass rounded-xl bg-secondary/50 border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-body resize-none"
+										required
+									></textarea>
+								</div>
+								<button
+									type="submit"
+									class="w-full px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-xl flex items-center justify-center gap-3 hover:glow-sm transition-all"
+								>
+									Pošalji poruku
+								</button>
+							</form>
+						</div>
+
+						<div class="space-y-6">
+							<a
+								href="mailto:luka.velickovski.analytics@gmail.com"
+								class="glass rounded-2xl p-6 flex items-start gap-5 hover:border-primary/30 transition-colors block"
+							>
+								<div
+									class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary">✉️</span>
+								</div>
+								<div>
+									<h4 class="font-display font-semibold text-foreground mb-1">
+										Email
+									</h4>
+									<p class="text-muted-foreground font-body">
+										velickovskiluka0@gmail.com
+									</p>
+								</div>
+							</a>
+
+							<a
+								href="https://github.com/Lu963-ai"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="glass rounded-2xl p-6 flex items-start gap-5 hover:border-primary/30 transition-colors block"
+							>
+								<div
+									class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"
+								>
+									<span class="text-primary">🐙</span>
+								</div>
+								<div>
+									<h4 class="font-display font-semibold text-foreground mb-1">
+										GitHub
+									</h4>
+									<p class="text-muted-foreground font-body">
+										https://github.com/Lu963-ai
+									</p>
+								</div>
+							</a>
+
+							<div class="glass rounded-2xl p-8 text-center">
+								<div class="text-4xl mb-4">💬</div>
+								<h4 class="font-display font-semibold text-xl mb-2">
+									Spremni za saradnju?
+								</h4>
+								<p class="text-muted-foreground font-body text-sm">
+									Javite mi se putem email-a ili društvenih mreža. Odgovaram u
+									roku od 24h.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="py-12 border-t border-border">
+			<div class="container mx-auto px-6">
+				<div
+					class="flex flex-col md:flex-row justify-between items-center gap-6"
+				>
+					<div class="text-center md:text-left">
+						<span class="font-display text-xl font-bold gradient-text"
+							>Portfolio</span
+						>
+						<p class="text-muted-foreground font-body text-sm mt-1">
+							Frontend / Web Developer
+						</p>
+					</div>
+
+					<div class="flex gap-4">
+						<a
+							href="https://github.com/Lu963-ai"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all"
+							aria-label="GitHub"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								width="20"
+								height="20"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 18 4.77 5.07 5.07 0 0 0 17.91 1S16.73.65 14 2.48a13.38 13.38 0 0 0-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+								></path>
+							</svg>
+						</a>
+
+						<a
+							href="mailto:luka.velickovski.analytics@gmail.com"
+							class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all"
+							aria-label="Email"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								width="20"
+								height="20"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M4 4h16v16H4z"></path>
+								<path d="m22 6-10 7L2 6"></path>
+							</svg>
+						</a>
+					</div>
+
+					<p class="text-muted-foreground font-body text-sm">
+						© 2025 All rights reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+
+		<div id="toast" class="toast hidden" role="status" aria-live="polite">
+			<div class="toast-title">Poruka poslata!</div>
+			<div class="toast-desc">Javim se u najkraćem mogućem roku.</div>
+		</div>
+
+		<script src="script.js"></script>
+
+		<script>
+			function fillSkillBars() {
+				document.querySelectorAll(".skill").forEach((skill) => {
+					const level = skill.getAttribute("data-level") || "0";
+					const bar = skill.querySelector(".skill-bar");
+					if (!bar) return;
+
+					// reset
+					bar.style.width = "0%";
+
+					// force reflow (da animacija radi i posle refresh)
+					void bar.offsetWidth;
+
+					// fill
+					setTimeout(() => {
+						bar.style.width = level + "%";
+					}, 150);
+				});
+			}
+
+			window.addEventListener("load", fillSkillBars);
+			window.addEventListener("pageshow", fillSkillBars); // refresh/back fix
+		</script>
+	</body>
 </html>
